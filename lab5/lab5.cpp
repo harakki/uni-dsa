@@ -3,8 +3,8 @@
 
 #define TREE_SIZE 100
 
-using std::cout;
 using std::cin;
+using std::cout;
 
 struct Tree
 {
@@ -399,7 +399,7 @@ Tree *tree_avl_delete(Tree *&ptr, int data, bool reduction)
             ptr = q->right;
             reduction = 1;
         }
-        else if (q->right == NULL) 
+        else if (q->right == NULL)
         {
             ptr = q->left;
             reduction = 1;
@@ -524,7 +524,7 @@ int main()
             window.clear(sf::Color::White);
             SFML_draw_tree(window, root, 1900);
             window.display();
-            
+
             cout << "\nВведите данные для удаления: ";
             cin >> input_delete;
 
@@ -534,7 +534,6 @@ int main()
             left_to_right(root);
             cout << "Средняя высота: " << tree_middle_height(root) << "\n";
         }
-
     }
 
 #else
@@ -551,7 +550,6 @@ int main()
     }
 
 #endif
-
 
     return 0;
 }

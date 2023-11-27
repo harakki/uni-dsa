@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 #define TREE_SIZE 100
 
@@ -115,7 +115,7 @@ void array_create_inc()
         W[i] = 1 + rand() % 10;
     }
 
-    //std::sort(V, V + TREE_SIZE + 1);
+    // std::sort(V, V + TREE_SIZE + 1);
     std::sort(W, W + TREE_SIZE + 1);
 }
 

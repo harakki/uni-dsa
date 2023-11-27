@@ -200,7 +200,7 @@ int main()
 
     left_to_right(root);
 
-    #ifdef SFML_GRAPHICS_HPP
+#ifdef SFML_GRAPHICS_HPP
 
     sf::RenderWindow window(sf::VideoMode(1900, 800), "ok");
 

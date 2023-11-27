@@ -1,9 +1,0 @@
-C/C++ > Дополнительные каталоги включаемых файлов : $(SolutionDir)thirdparty\SFML-2.6.0\include
-
-Компоновщик > Общие > Дополнительные каталоги библиотек : $(SolutionDir)thirdparty\SFML-2.6.0\lib
-
-Компоновщик > Ввод > Debug : sfml-system-s-d.lib;winmm.lib;sfml-window-s-d.lib;opengl32.lib;gdi32.lib;sfml-graphics-s-d.lib;freetype.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)
-
-Компоновщик > Ввод > Release : sfml-system-s.lib;winmm.lib;sfml-window-s.lib;opengl32.lib;gdi32.lib;sfml-graphics-s.lib;freetype.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)
-
-C/C++ > Препроцессор > Определения препроцессора : SFML_STATIC;

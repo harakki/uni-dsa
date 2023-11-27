@@ -15,7 +15,9 @@ struct Tree
     Tree *left;
     Tree *right;
 
-    Tree(int data) : data(data), balance_factor(0), left(nullptr), right(nullptr) {}
+    Tree(int data) : data(data), balance_factor(0), left(nullptr), right(nullptr)
+    {
+    }
 };
 
 #ifdef SFML_GRAPHICS_HPP

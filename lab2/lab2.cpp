@@ -265,7 +265,7 @@ int main()
     cout << "Высота: " << tree_height(root_double_cosv) << "\n";
     cout << "Средняя высота: " << tree_middle_height(root_double_cosv) << "\n";
 
-    #ifdef SFML_GRAPHICS_HPP
+#ifdef SFML_GRAPHICS_HPP
 
     sf::RenderWindow window(sf::VideoMode(1900, 800), "looks strange...");
 

@@ -1,3 +1,4 @@
+#include <SFML/Graphics.hpp>
 #include <ctime>
 #include <iostream>
 
@@ -16,6 +17,79 @@ struct Tree
     {
     }
 };
+
+#ifdef SFML_GRAPHICS_HPP
+
+void SFML_draw_node(sf::RenderWindow &window, Tree *node, float x, float y, float offset_by_x)
+{
+    if (node != nullptr)
+    {
+        // Параметры круга
+        sf::CircleShape node_outline(20);
+
+        node_outline.setPosition(x, y);
+        node_outline.setFillColor(sf::Color::Transparent);
+        node_outline.setOutlineColor(sf::Color::Black);
+        node_outline.setOutlineThickness(1);
+
+        // Параметры текста
+        sf::Font font;
+        if (font.loadFromFile("sfml-resources\\Arial.ttf") == 0)
+        {
+            return;
+        }
+
+        sf::Text node_data(std::to_string(node->data), font, 20);
+        node_data.setPosition(x + 10, y + 10);
+        node_data.setFillColor(sf::Color::Black);
+
+        // Отрисовываем ноды
+        window.draw(node_outline);
+        window.draw(node_data);
+
+        if (node->left)
+        {
+            sf::Vertex line[] = {sf::Vertex(sf::Vector2f(x + 20, y + 40)),
+                                 sf::Vertex(sf::Vector2f(x - offset_by_x + 38, y + 110))};
+            // Параметры линий
+            line[0].color = sf::Color::Black;
+            line[1].color = sf::Color::Black;
+
+            window.draw(line, 2, sf::Lines);
+
+            SFML_draw_node(window, node->left, x - offset_by_x, y + 100, offset_by_x / 2);
+        }
+        if (node->right)
+        {
+            sf::Vertex line[] = {sf::Vertex(sf::Vector2f(x + 20, y + 40)),
+                                 sf::Vertex(sf::Vector2f(x + offset_by_x + 2, y + 110))};
+            // БАГФИКС ЭТИХ ДВУХ СТРОЧЕК ЗАНЯЛ ЧАС
+            line[0].color = sf::Color::Black;
+            line[1].color = sf::Color::Black;
+
+            window.draw(line, 2, sf::Lines);
+
+            SFML_draw_node(window, node->right, x + offset_by_x, y + 100, offset_by_x / 2);
+        }
+    }
+}
+
+void SFML_draw_tree(sf::RenderWindow &window, Tree *root, int window_width)
+{
+    if (root != nullptr)
+    {
+        // Начальные координаты корня дерева
+        float x = window_width / (float)2;
+        float y = 20;
+
+        // Расстояние между узлами
+        float offset_by_x = window_width / (float)4;
+
+        SFML_draw_node(window, root, x, y, offset_by_x);
+    }
+}
+
+#endif
 
 void array_create_random(int array[], int size)
 {
@@ -190,6 +264,28 @@ int main()
     cout << "Контрольная сумма: " << tree_checksum(root_double_cosv) << "\n";
     cout << "Высота: " << tree_height(root_double_cosv) << "\n";
     cout << "Средняя высота: " << tree_middle_height(root_double_cosv) << "\n";
+
+    #ifdef SFML_GRAPHICS_HPP
+
+    sf::RenderWindow window(sf::VideoMode(1900, 800), "looks strange...");
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        window.clear(sf::Color::White);
+        SFML_draw_tree(window, root_double_cosv, 1900);
+
+        window.display();
+    }
+
+#endif
 
     return 0;
 }

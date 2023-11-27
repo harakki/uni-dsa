@@ -18,14 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="lab3.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{3dd40556-de78-4b1f-b15a-fac3a7e67a59}</ProjectGuid>
-    <RootNamespace>lab3</RootNamespace>
+    <ProjectGuid>{72ab4e71-14a2-43ba-9d20-5b3e82f4920b}</ProjectGuid>
+    <RootNamespace>lab8</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -112,8 +109,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)thirdparty\SFML-2.6.0\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-system-s-d.lib;winmm.lib;sfml-window-s-d.lib;opengl32.lib;gdi32.lib;sfml-graphics-s-d.lib;freetype.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)thirdparty\SFML-2.6.0\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,6 +132,9 @@
       <AdditionalDependencies>sfml-system-s.lib;winmm.lib;sfml-window-s.lib;opengl32.lib;gdi32.lib;sfml-graphics-s.lib;freetype.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="lab8.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

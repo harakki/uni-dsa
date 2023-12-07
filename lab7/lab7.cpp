@@ -256,6 +256,35 @@ float tree_middle_height(Tree *root)
     return (float)(tree_height_sum(root, 1) / tree_size(root));
 }
 
+int tree_weight(Tree *p) // Вычисление весов вершин
+{
+    if (p == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return (p->weight + tree_weight(p->left) + tree_weight(p->right));
+    }
+}
+
+int tree_track_weight(Tree *p, int l) // Вычисление попарных произведений весов вершин на путь до этих вершин
+{
+    if (p == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        return (l * p->weight + tree_track_weight(p->left, l + 1) + tree_track_weight(p->right, l + 1));
+    }
+}
+
+double tree_aver_weight(Tree *p) // Вычисление среденевзвешенной высоты
+{
+    return (double)tree_track_weight(p, 1) / (double)tree_weight(p);
+}
+
 int main()
 {
     Tree *root = nullptr;
@@ -268,6 +297,7 @@ int main()
     fill_matrix_AP_AR();
     create_optimal_search_tree(0, TREE_SIZE, root);
 
+    cout << "AP[0][TREE_SIZE] / AW[0][TREE_SIZE]: " << (double)AP[0][TREE_SIZE] / (double)AW[0][TREE_SIZE] << "\n\n";
     cout << "ДОП-дерево"
          << "\n\n"
          << "Обход дерева cлева направо:"
@@ -278,7 +308,7 @@ int main()
     cout << "\n"
          << "Размер дерева: " << tree_size(root) << "\n"
          << "Контрольная сумма: " << tree_checksum(root) << "\n"
-         << "Средневзвешенная высота: " << tree_middle_height(root) << "\n";
+         << "Средневзвешенная высота: " << tree_aver_weight(root) << "\n";
 
 #ifdef SFML_GRAPHICS_HPP
 
